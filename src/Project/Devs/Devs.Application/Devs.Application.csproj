@@ -10,4 +10,17 @@
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.1" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Features\Frameworks\Constants\" />
+	  <Folder Include="Features\Users\Models\" />
+	  <Folder Include="Features\Users\Rules\" />
+	  <Folder Include="Features\Users\Queries\" />
+	  <Folder Include="Features\Users\Profiles\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\corePackages\Core.Application\Core.Application.csproj" />
+	  <ProjectReference Include="..\..\..\corePackages\Core.Persistence\Core.Persistence.csproj" />
+	  <ProjectReference Include="..\..\..\corePackages\Core.Security\Core.Security.csproj" />
+	  <ProjectReference Include="..\Devs.Domain\Devs.Domain.csproj" />
+	</ItemGroup>
 </Project>

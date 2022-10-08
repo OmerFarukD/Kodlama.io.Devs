@@ -20,6 +20,9 @@ namespace Devs.Persistence
             services.AddScoped<ILanguageRepository,LanguageRepository>();
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<IFrameworkRepository,FrameworkRepository>();
+            services.AddScoped<IOperationClaimRepository,OperationClaimRepository>();
+            services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             
             return services;
         }

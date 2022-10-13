@@ -1,7 +1,9 @@
 ﻿using Core.Security.Dtos;
 using Core.Security.Entities;
 using Devs.Application.Features.Auths.Commands.Dtos;
+using Devs.Application.Features.Auths.Commands.Login;
 using Devs.Application.Features.Auths.Commands.Register;
+using Devs.Application.Features.Auths.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +27,19 @@ namespace Devs.WebAPI.Controllers
             return Created("", result.AccessToken);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto)
+        {
+            LoginCommand command = new()
+            {
+                IpAddress = GetIpAddress(),
+                UserForLoginDto = userForLoginDto
+            };
+
+            LoginedDto result = await Mediator.Send(command);
+            SetRefreshTokenToCookie(result.RefreshToken);
+            return Created("",result.AccessToken);
+        }
         private void SetRefreshTokenToCookie(RefreshToken refreshToken)
         {
             CookieOptions cookieOptions = new() { HttpOnly = true, Expires = DateTime.Now.AddDays(7) };

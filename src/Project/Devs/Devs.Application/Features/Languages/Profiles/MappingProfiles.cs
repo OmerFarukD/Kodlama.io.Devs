@@ -16,7 +16,7 @@ namespace Devs.Application.Features.Languages.Profiles
             CreateMap<Language, CreateLanguageCommandDto>().ReverseMap();
             CreateMap<Language, CreateLanguageCommand>().ReverseMap();
             CreateMap<Language,DeleteLanguageCommandDto>().ReverseMap();
-            CreateMap<Language, DeleteBrandCommand>().ReverseMap();
+            CreateMap<Language, DeleteLanguageCommand>().ReverseMap();
             CreateMap<Language, LanguageListQueryDto>().ReverseMap();
             CreateMap<IPaginate<Language>,LanguageListModel>().ReverseMap();
             CreateMap<Language, UpdateLanguageCommandDto>().ReverseMap();

@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Devs.Application.Features.Languages.Command;
 using Devs.Application.Features.Languages.Command.CreateLanguage;
+using Devs.Application.Features.Languages.Command.DeleteLanguage;
 using Devs.Application.Features.Languages.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,9 +19,15 @@ namespace Devs.WebAPI.Controllers
             return Created("", result);
         }
         [HttpPost("deleteLanguage")]
-        public async Task<IActionResult> DeleteLanguage()
+        public async Task<IActionResult> DeleteLanguage([FromQuery] string name)
         {
-            throw new NoNullAllowedException();
+            DeleteLanguageCommand command = new DeleteLanguageCommand()
+            {
+                Name = name
+            };
+            DeleteLanguageCommandDto result = await Mediator.Send(command);
+            
+            return Ok(result);
         }
     }
 }

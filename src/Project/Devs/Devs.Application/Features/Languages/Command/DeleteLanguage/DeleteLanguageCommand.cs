@@ -12,11 +12,11 @@ using MediatR;
 
 namespace Devs.Application.Features.Languages.Command.DeleteLanguage
 {
-    public class DeleteBrandCommand :IRequest<DeleteLanguageCommandDto>
+    public class DeleteLanguageCommand :IRequest<DeleteLanguageCommandDto>
     {
         public string Name { get; set; }
 
-        public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, DeleteLanguageCommandDto>
+        public class DeleteBrandCommandHandler : IRequestHandler<DeleteLanguageCommand, DeleteLanguageCommandDto>
         {
             private readonly ILanguageRepository _languageRepository;
             private readonly IMapper _mapper;
@@ -28,9 +28,11 @@ namespace Devs.Application.Features.Languages.Command.DeleteLanguage
                 _mapper = mapper;
                 _languageBusinessRules = languageBusinessRules;
             }
-            public async Task<DeleteLanguageCommandDto> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
+            public async Task<DeleteLanguageCommandDto> Handle(DeleteLanguageCommand request, CancellationToken cancellationToken)
             {
-                Language language = _mapper.Map<Language>(request);
+
+
+                Language? language = await _languageRepository.GetAsync(l=>l.Name==request.Name);
                 Language deletedLanguage = await _languageRepository.DeleteAsync(language);
                 DeleteLanguageCommandDto result = _mapper.Map<DeleteLanguageCommandDto>(deletedLanguage);
                 return result;

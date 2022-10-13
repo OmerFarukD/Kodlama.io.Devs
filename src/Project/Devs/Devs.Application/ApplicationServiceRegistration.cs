@@ -4,6 +4,7 @@ using Devs.Application.Features.Auths.Rules;
 using Devs.Application.Features.Frameworks.Rules;
 using Devs.Application.Features.Languages.Rules;
 using Devs.Application.Services.AuthServices;
+using Devs.Application.Services.UserServices;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ namespace Devs.Application
             services.AddScoped<FrameworkBusinessRules>();
             services.AddScoped<AuthBusinessRules>();
             services.AddScoped<IAuthService,AuthManager>();
+            services.AddScoped<IUserService, UserManager>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
